@@ -1,8 +1,8 @@
-FROM base
-MAINTAINER Juan Patten (jr@juanpatten.com)
+FROM ubuntu
+MAINTAINER Matthew Baird (mattbaird@gmail.com)
 
 # Install logstash
-RUN echo "deb http://archive.ubuntu.com/ubuntu quantal main universe" > /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get upgrade -y
 
@@ -24,6 +24,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 # Configure Logstash
 ADD run.sh /usr/local/bin/run
 ADD logstash.conf /opt/logstash.conf
+
 ADD default /etc/nginx/sites-available/default
 
 RUN chmod +x /usr/local/bin/run
